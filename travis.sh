@@ -36,6 +36,18 @@ rm -rf .git
 git init
 git pull https://github.com/splitbrain/dokuwiki.git
 
+# install additional requirements
+REQUIRE="lib/plugins/$BASE/requirements.txt"
+if [ -f "$REQUIRE" ]; then
+    grep -v '^#' "$REQUIRE" | \
+    while read -r LINE
+    do
+        if [ ! -z "$LINE" ]; then
+            git clone $LINE
+        fi
+    done
+fi
+
 # we now have a full dokuwiki environment with our plugin installed
 # travis can take over
 exit 0
