@@ -26,6 +26,7 @@ if [ -z "$BASE" ]; then
 fi
 
 # move everything to the correct location
+echo ">MOVING TO: lib/plugins/$BASE"
 mkdir -p lib/plugins/$BASE
 mv * lib/plugins/$BASE/ 2>/dev/null
 
@@ -33,6 +34,7 @@ mv * lib/plugins/$BASE/ 2>/dev/null
 rm -rf .git
 
 # checkout DokuWiki master into current directory (no clone because dir isn't empty)
+echo ">CLONING DOKUWIKI"
 git init
 git pull https://github.com/splitbrain/dokuwiki.git
 
@@ -43,6 +45,7 @@ if [ -f "$REQUIRE" ]; then
     while read -r LINE
     do
         if [ ! -z "$LINE" ]; then
+            echo ">REQUIREMENT: $LINE"
             git clone $LINE
         fi
     done
