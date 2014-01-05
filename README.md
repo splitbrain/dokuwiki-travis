@@ -16,10 +16,17 @@ php:
   - "5.5"
   - "5.4"
   - "5.3"
+env:
+  - DOKUWIKI=master
+  - DOKUWIKI=stable
+  - DOKUWIKI=old-stable
 before_install: wget https://raw.github.com/splitbrain/dokuwiki-travis/master/travis.sh
 install: sh travis.sh
 script: cd _test && phpunit --stderr --group plugin_something
 ```
+
+As you can see, you can specify the PHP versions and DokuWiki releases your plugin
+should be tested against.
 
 Plugins with dependencies
 -------------------------

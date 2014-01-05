@@ -33,10 +33,11 @@ mv * lib/plugins/$BASE/ 2>/dev/null
 # remove current .git
 rm -rf .git
 
-# checkout DokuWiki master into current directory (no clone because dir isn't empty)
-echo ">CLONING DOKUWIKI"
+# checkout DokuWiki into current directory (no clone because dir isn't empty)
+# the branch is specified in the $DOKUWIKI environment variable
+echo ">CLONING DOKUWIKI: $DOKUWIKI"
 git init
-git pull https://github.com/splitbrain/dokuwiki.git
+git pull https://github.com/splitbrain/dokuwiki.git $DOKUWIKI
 
 # install additional requirements
 REQUIRE="lib/plugins/$BASE/requirements.txt"
