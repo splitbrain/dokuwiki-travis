@@ -19,7 +19,7 @@ if [ ! -d '_test' ]; then
 fi
 
 # find out where this plugin belongs to
-BASE=`grep '^base' plugin.info.txt | awk '{print $2}'`
+BASE=`awk '/^base/{print $2}' plugin.info.txt`
 if [ -z "$BASE" ]; then
     echo 'This plugins misses a base entry in plugin.info.txt'
     exit 1
