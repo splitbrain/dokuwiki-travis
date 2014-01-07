@@ -33,6 +33,9 @@ mv * lib/plugins/$BASE/ 2>/dev/null
 # remove current .git
 rm -rf .git
 
+# remove own travis config to make room for DokuWiki's                                                                  
+rm -rf .travis.yml 
+
 # checkout DokuWiki into current directory (no clone because dir isn't empty)
 # the branch is specified in the $DOKUWIKI environment variable
 echo ">CLONING DOKUWIKI: $DOKUWIKI"
