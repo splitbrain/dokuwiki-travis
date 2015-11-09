@@ -39,13 +39,8 @@ fi
 # move everything to the correct location
 echo ">MOVING TO: lib/$dir/$BASE"
 mkdir -p lib/${dir}/$BASE
-mv -n * lib/${dir}/$BASE/ 2>/dev/null
-
-# remove current .git
-rm -rf .git
-
-# remove own travis config to make room for DokuWiki's                                                                  
-rm -rf .travis.yml 
+mv * lib/${dir}/$BASE/ 2>/dev/null
+mv .* lib/${dir}/$BASE/
 
 # checkout DokuWiki into current directory (no clone because dir isn't empty)
 # the branch is specified in the $DOKUWIKI environment variable
