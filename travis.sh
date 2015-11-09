@@ -18,17 +18,28 @@ if [ ! -d '_test' ]; then
     exit 1
 fi
 
+if [ -e 'plugin.info.txt' ]; then
+    type='plugin'
+    dir='plugins'
+elif [ -e 'template.info.txt' ]; then
+    type='template'
+    dir='tpl'
+else
+    echo 'No plugin.info.txt or template.info.txt found!'
+    exit 1
+fi
+
 # find out where this plugin belongs to
-BASE=`awk '/^base/{print $2}' plugin.info.txt`
+BASE=`awk '/^base/{print $2}' ${type}.info.txt`
 if [ -z "$BASE" ]; then
-    echo 'This plugins misses a base entry in plugin.info.txt'
+    echo "This plugins misses a base entry in ${type}.info.txt"
     exit 1
 fi
 
 # move everything to the correct location
-echo ">MOVING TO: lib/plugins/$BASE"
-mkdir -p lib/plugins/$BASE
-mv * lib/plugins/$BASE/ 2>/dev/null
+echo ">MOVING TO: lib/$dir/$BASE"
+mkdir -p lib/${dir}/$BASE
+mv -n * lib/${dir}/$BASE/ 2>/dev/null
 
 # remove current .git
 rm -rf .git
@@ -43,7 +54,7 @@ git init
 git pull https://github.com/splitbrain/dokuwiki.git $DOKUWIKI
 
 # install additional requirements
-REQUIRE="lib/plugins/$BASE/requirements.txt"
+REQUIRE="lib/${dir}/$BASE/requirements.txt"
 if [ -f "$REQUIRE" ]; then
     grep -v '^#' "$REQUIRE" | \
     while read -r LINE
