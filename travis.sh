@@ -1,14 +1,15 @@
 #!/usr/bin/sh
 #
 # This script sets up a DokuWiki environment to run the plugin's tests on
-# travis-ci.org. The plugin itself will be moved to its correct location within
-# the DokiWiki hierarchy.
+# travis-ci.org or gitlab-ci.
+# The plugin itself will be moved to its correct location within the DokiWiki
+# hierarchy.
 #
 # @author Andreas Gohr <andi@splitbrain.org>
 
 # make sure this runs on travis only
-if [ -z "$TRAVIS" ]; then
-    echo 'This script is only intended to run on travis-ci.org build servers'
+if [ -z "$TRAVIS" ] && [ -z "$CI_SERVER" ]  ; then
+    echo 'This script is only intended to run on travis-ci.org or gitlab-ci build servers'
     exit 1
 fi
 
@@ -18,6 +19,7 @@ if [ ! -d '_test' ]; then
     exit 1
 fi
 
+# check if template or plugin
 if [ -e 'plugin.info.txt' ]; then
     type='plugin'
     dir='plugins'
