@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/bash
 #
 # This script sets up a DokuWiki environment to run the plugin's tests on
 # travis-ci.org or gitlab-ci.
@@ -42,7 +42,7 @@ fi
 echo ">MOVING TO: lib/$dir/$BASE"
 mkdir -p lib/${dir}/$BASE
 mv * lib/${dir}/$BASE/ 2>/dev/null
-mv .* lib/${dir}/$BASE/
+GLOBIGNORE=".:.." mv .* lib/${dir}/$BASE/
 
 # checkout DokuWiki into current directory (no clone because dir isn't empty)
 # the branch is specified in the $DOKUWIKI environment variable
