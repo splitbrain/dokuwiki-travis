@@ -2,8 +2,8 @@ Travis CI testing for DokuWiki plugins
 ======================================
 
 This repository contains a script that can be used in
-[Travis CI](https://travis-ci.org) to setup the DokuWiki environment to test a
-single plugin.
+[Travis CI](https://travis-ci.org) or [Gitlab-CI](https://about.gitlab.com/gitlab-ci/)
+to setup the DokuWiki environment to test a single plugin.
 
 Setup
 -----
@@ -23,7 +23,7 @@ env:
   - DOKUWIKI=stable
   - DOKUWIKI=old-stable
 before_install: wget https://raw.github.com/splitbrain/dokuwiki-travis/master/travis.sh
-install: /bin/sh travis.sh
+install: sh travis.sh
 script: cd _test && phpunit --stderr --group plugin_something
 ```
 
