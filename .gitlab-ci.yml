@@ -1,0 +1,68 @@
+# example .gitlab-ci.yml to test a DokuWiki plugin in Gitlab-CI
+
+variables:
+  - PLUGIN: plugin_something # configure your plugin here
+
+stages:
+  - test
+
+image: splitbrain/phpfarm:jessie
+
+# testing with different PHP and DokuWiki versions
+# unfortunately gitlab-ci does not support a build matrix, yet
+
+php-5.4-master:
+  stage: test
+  script:
+    - wget https://raw.githubusercontent.com/splitbrain/dokuwiki-travis/master/travis.sh
+    - export DOKUWIKI="master"
+    - sh travis.sh
+    - wget https://phar.phpunit.de/phpunit-4.8.23.phar -O _test/phpunit
+    - cd _test && php-5.4 phpunit --stderr --group $PLUGIN
+
+php-5.5-master:
+  stage: test
+  script:
+    - wget https://raw.githubusercontent.com/splitbrain/dokuwiki-travis/master/travis.sh
+    - export DOKUWIKI="master"
+    - sh travis.sh
+    - wget https://phar.phpunit.de/phpunit-4.8.23.phar -O _test/phpunit
+    - cd _test && php-5.5 phpunit --stderr --group $PLUGIN
+
+php-5.6-master:
+  stage: test
+  script:
+    - wget https://raw.githubusercontent.com/splitbrain/dokuwiki-travis/master/travis.sh
+    - export DOKUWIKI="master"
+    - sh travis.sh
+    - wget https://phar.phpunit.de/phpunit-5.2.10.phar -O _test/phpunit
+    - cd _test && php-5.6 phpunit --stderr --group $PLUGIN
+
+php-7.0-master:
+  stage: test
+  script:
+    - wget https://raw.githubusercontent.com/splitbrain/dokuwiki-travis/master/travis.sh
+    - export DOKUWIKI="master"
+    - sh travis.sh
+    - wget https://phar.phpunit.de/phpunit-5.2.10.phar -O _test/phpunit
+    - cd _test && php-7.0 phpunit --stderr --group $PLUGIN
+
+php-5.6-stable:
+  stage: test
+  script:
+    - wget https://raw.githubusercontent.com/splitbrain/dokuwiki-travis/master/travis.sh
+    - export DOKUWIKI="stable"
+    - sh travis.sh
+    - wget https://phar.phpunit.de/phpunit-5.2.10.phar -O _test/phpunit
+    - cd _test && php-5.6 phpunit --stderr --group $PLUGIN
+
+php-7.0-stable:
+  stage: test
+  script:
+    - wget https://raw.githubusercontent.com/splitbrain/dokuwiki-travis/master/travis.sh
+    - export DOKUWIKI="stable"
+    - sh travis.sh
+    - wget https://phar.phpunit.de/phpunit-5.2.10.phar -O _test/phpunit
+    - cd _test && php-7.0 phpunit --stderr --group $PLUGIN
+
+
