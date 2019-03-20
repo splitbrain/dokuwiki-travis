@@ -58,7 +58,7 @@ if [ -f "$REQUIRE" ]; then
     do
         if [ -n "$LINE" ]; then
             echo ">REQUIREMENT: $LINE"
-            git clone "$LINE"
+            git clone $LINE
         fi
     done
 fi
