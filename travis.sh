@@ -65,7 +65,7 @@ fi
 
 # figure out the currently tested PHP version
 PHPV=$(php -v | grep -Po '(?<=PHP )([0-9].[0-9])')
-echo "running PHP $PHPV"
+echo "> RUNNING PHP $PHPV"
 
 # download the proper phpunit
 if [ "$PHPV" = "5.6" ]; then
@@ -77,8 +77,9 @@ elif [ "$PHPV" = "7.4" ]; then
 else
     PHPUNIT='phpunit-7'
 fi
-wget "https://phar.phpunit.de/$PHPUNIT" -o _test/phpunit.phar
+wget "https://phar.phpunit.de/$PHPUNIT" -O _test/phpunit.phar
 chmod 755 _test/phpunit.phar
+echo ">DOWNLOADED $PHPUNIT"
 
 # we now have a full dokuwiki environment with our plugin installed
 # travis can take over
