@@ -75,9 +75,9 @@ elif [ "$PHPV" = "7.0" ]; then
 elif [ "$PHPV" = "7.4" ]; then
     PHPUNIT='phpunit-8.phar'
 else
-    PHPUNIT='phpunit-7'
+    PHPUNIT='phpunit-7.phar'
 fi
-wget "https://phar.phpunit.de/$PHPUNIT" -O _test/phpunit.phar
+wget "https://phar.phpunit.de/$PHPUNIT" -O _test/phpunit.phar || exit 1
 chmod 755 _test/phpunit.phar
 echo ">DOWNLOADED $PHPUNIT"
 
