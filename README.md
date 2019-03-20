@@ -13,18 +13,18 @@ Use it like this in ``.travis.yml``:
 ```
 language: php
 php:
+  - "7.3"
+  - "7.2"
+  - "7.1"
   - "7.0"
   - "5.6"
-  - "5.5"
-  - "5.4"
-  - "5.3"
 env:
   - DOKUWIKI=master
   - DOKUWIKI=stable
   - DOKUWIKI=old-stable
 before_install: wget https://raw.github.com/splitbrain/dokuwiki-travis/master/travis.sh
 install: sh travis.sh
-script: cd _test && phpunit --stderr --group plugin_something
+script: cd _test && ./phpunit.phar --stderr --group plugin_something
 ```
 
 As you can see, you can specify the PHP versions and DokuWiki releases your plugin
