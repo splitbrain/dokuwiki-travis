@@ -73,7 +73,8 @@ if [ "$PHPV" = "5.6" ]; then
 elif [ "$PHPV" = "7.0" ]; then
     PHPUNIT='phpunit-6.phar'
 elif [ "$PHPV" = "7.4" ]; then
-    PHPUNIT='phpunit-8.phar'
+    # PHP 5 backward compatibility lock to PHPUnit 7 (type hinting)
+    PHPUNIT='phpunit-7.phar'
 else
     PHPUNIT='phpunit-7.phar'
 fi
