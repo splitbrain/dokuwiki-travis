@@ -13,6 +13,7 @@ Use it like this in ``.travis.yml``:
 ```
 language: php
 php:
+  - "7.4"
   - "7.3"
   - "7.2"
   - "7.1"
