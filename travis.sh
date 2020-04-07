@@ -64,7 +64,13 @@ if [ -f "$REQUIRE" ]; then
 fi
 
 # download the proper phpunit
-cd _test && ./fetchphpunit.php && cd ..
+cd _test
+if [ ! -f "fetchphpunit.php" ]; then
+    wget https://raw.githubusercontent.com/splitbrain/dokuwiki/master/_test/fetchphpunit.php
+    chmod 755 fetchphpunit.php
+fi
+php ./fetchphpunit.php
+cd ..
 
 # we now have a full dokuwiki environment with our plugin installed
 # travis can take over
